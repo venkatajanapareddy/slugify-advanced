@@ -1,0 +1,57 @@
+{
+  "name": "slugify-advanced",
+  "version": "1.0.0",
+  "description": "Advanced, SEO-friendly, locale-aware string slugification for URLs. TypeScript, zero runtime deps.",
+  "keywords": [
+    "slugify",
+    "slug",
+    "url",
+    "seo",
+    "typescript",
+    "locale",
+    "transliteration",
+    "string"
+  ],
+  "author": "slugify-advanced contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/venkatajanapareddy/slugify-advanced.git"
+  },
+  "bugs": {
+    "url": "https://github.com/venkatajanapareddy/slugify-advanced/issues"
+  },
+  "homepage": "https://github.com/venkatajanapareddy/slugify-advanced#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json",
+    "test": "vitest",
+    "dev": "vitest watch",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+} 

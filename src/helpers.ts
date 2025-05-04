@@ -36,4 +36,4 @@ export function preserveCase(original: string, replacement: string): string {
     return replacement[0].toUpperCase() + replacement.slice(1).toLowerCase();
   }
   return replacement;
-} 
+}

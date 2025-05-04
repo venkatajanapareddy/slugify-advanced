@@ -41,8 +41,7 @@
     "test": "vitest",
     "dev": "vitest watch",
     "format": "prettier --write .",
-    "lint": "eslint .",
-    "test:coverage": "vitest run --coverage"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

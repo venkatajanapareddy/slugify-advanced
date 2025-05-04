@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+
 import { slugify } from '../src';
 
 describe('slugify', () => {
@@ -8,13 +9,13 @@ describe('slugify', () => {
   });
 
   it('should throw TypeError for non-string input', () => {
-    // @ts-expect-error
+    // @ts-expect-error testing null input which is invalid
     expect(() => slugify(null)).toThrow(TypeError);
-    // @ts-expect-error
+    // @ts-expect-error testing undefined input which is invalid
     expect(() => slugify(undefined)).toThrow(TypeError);
-    // @ts-expect-error
+    // @ts-expect-error testing number input which is invalid
     expect(() => slugify(123)).toThrow(TypeError);
-    // @ts-expect-error
+    // @ts-expect-error testing object input which is invalid
     expect(() => slugify({})).toThrow(TypeError);
   });
 

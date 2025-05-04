@@ -1,3 +1,5 @@
+require.resolve('eslint-plugin-unused-imports');
+
 module.exports = {
   root: true,
   env: {
@@ -10,7 +12,6 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    'plugin:unused-imports/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
@@ -20,9 +21,9 @@ module.exports = {
     'import/order': [
       'warn',
       {
-        'alphabetize': { order: 'asc', caseInsensitive: true },
+        alphabetize: { order: 'asc', caseInsensitive: true },
         'newlines-between': 'always',
       },
     ],
   },
-}; 
+};

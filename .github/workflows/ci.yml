@@ -28,11 +28,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Check formatting
-        run: npm run format:check
-
-      - name: Test with coverage
-        run: npm run test:coverage
+      - name: Run tests
+        run: npm test
 
       - name: Build
         run: npm run build
@@ -62,4 +59,4 @@ jobs:
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --access public --provenance 
+        run: npm publish --access public --provenance

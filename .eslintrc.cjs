@@ -17,7 +17,13 @@ module.exports = {
   ],
   ignorePatterns: ['dist/', 'coverage/', 'node_modules/'],
   rules: {
+    // Using direct rules instead of 'plugin:unused-imports/recommended' extension
+    // to avoid configuration resolution issues in CI environments
     'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+    ],
     'import/order': [
       'warn',
       {

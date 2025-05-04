@@ -37,15 +37,15 @@ Converts a string into a URL-friendly slug with advanced customization options.
 
 #### Options
 
-| Option              | Type                        | Default   | Description |
-|---------------------|-----------------------------|-----------|-------------|
-| `separator`         | `string`                    | `'-'`     | Character used to join words and replace invalid character sequences. |
-| `lowercase`         | `boolean`                   | `true`    | Whether to convert the result to lowercase. |
-| `customReplacements`| `Record<string, string>` or `Map<string, string>` | `{}` | Custom character replacements to apply before any other processing. |
-| `locale`            | `boolean`                   | `true`    | Enable built-in locale transliterations for common European characters. |
-| `strict`            | `boolean`                   | `false`   | If true, only allows alphanumeric and separator. If false, also allows underscores. |
-| `maxLength`         | `number`                    | `undefined` | Maximum length of the resulting slug. No trailing separator after truncation. |
-| `removeStopWords`   | `boolean` or `string[]`     | `false`   | Remove common English stop words (or custom list). |
+| Option               | Type                                              | Default     | Description                                                                         |
+| -------------------- | ------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------- |
+| `separator`          | `string`                                          | `'-'`       | Character used to join words and replace invalid character sequences.               |
+| `lowercase`          | `boolean`                                         | `true`      | Whether to convert the result to lowercase.                                         |
+| `customReplacements` | `Record<string, string>` or `Map<string, string>` | `{}`        | Custom character replacements to apply before any other processing.                 |
+| `locale`             | `boolean`                                         | `true`      | Enable built-in locale transliterations for common European characters.             |
+| `strict`             | `boolean`                                         | `false`     | If true, only allows alphanumeric and separator. If false, also allows underscores. |
+| `maxLength`          | `number`                                          | `undefined` | Maximum length of the resulting slug. No trailing separator after truncation.       |
+| `removeStopWords`    | `boolean` or `string[]`                           | `false`     | Remove common English stop words (or custom list).                                  |
 
 #### Examples
 
@@ -95,7 +95,7 @@ See `src/constants.ts` for the full mapping.
 
 ### License
 
-MIT © [Your Name](LICENSE)
+MIT
 
 ---
 

@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/venkatajanapareddy/slugify-advanced.git"
+    "url": "git+https://github.com/venkatajanapareddy/slugify-advanced.git"
   },
   "bugs": {
     "url": "https://github.com/venkatajanapareddy/slugify-advanced/issues"

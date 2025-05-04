@@ -10,19 +10,16 @@ on:
 
 jobs:
   ci:
-    name: Lint, Test, and Build (Node.js ${{ matrix.node }})
+    name: Lint, Test, and Build (Node.js 22.x)
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [18.x, 20.x, 22.x]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node }}
+      - name: Setup Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 22.x
           cache: 'npm'
 
       - name: Install dependencies

@@ -31,13 +31,17 @@ describe('slugify', () => {
     expect(slugify('foo   bar---baz', { separator: '' })).toBe('foobarbaz');
   });
 
-  it('should respect lower: false and preserve case', () => {
-    expect(slugify('Hello World!', { lower: false })).toBe('Hello-World');
-    expect(slugify('FOO foo', { lower: false, customReplacements: { FOO: 'BAR', foo: 'baz' } })).toBe('BAR-baz');
+  it('should respect lowercase: false and preserve case', () => {
+    expect(slugify('Hello World!', { lowercase: false })).toBe('Hello-World');
+    expect(
+      slugify('FOO foo', { lowercase: false, customReplacements: { FOO: 'BAR', foo: 'baz' } })
+    ).toBe('BAR-baz');
   });
 
   it('should apply customReplacements (object and Map)', () => {
-    expect(slugify('foo bar baz', { customReplacements: { foo: 'qux', bar: 'zap' } })).toBe('qux-zap-baz');
+    expect(slugify('foo bar baz', { customReplacements: { foo: 'qux', bar: 'zap' } })).toBe(
+      'qux-zap-baz'
+    );
     const map = new Map([
       ['foo', 'qux'],
       ['bar', 'zap'],
@@ -64,7 +68,9 @@ describe('slugify', () => {
   });
 
   it('should remove stop words (default and custom list)', () => {
-    expect(slugify('The quick brown fox jumps over the lazy dog', { removeStopWords: true })).toBe('quick-brown-fox-jumps-lazy-dog');
+    expect(slugify('The quick brown fox jumps over the lazy dog', { removeStopWords: true })).toBe(
+      'quick-brown-fox-jumps-lazy-dog'
+    );
     expect(slugify('foo bar baz qux', { removeStopWords: ['bar', 'qux'] })).toBe('foo-baz');
   });
 
@@ -96,8 +102,7 @@ describe('slugify', () => {
   it('should handle empty separator and single word', () => {
     expect(slugify('foo bar baz', { separator: '' })).toBe('foobarbaz');
     expect(slugify('foo   bar---baz', { separator: '' })).toBe('foobarbaz');
-    expect(slugify('Hello')).toBe('hello');
-    expect(slugify('Hello', { lower: false })).toBe('Hello');
+    expect(slugify('Hello', { lowercase: false })).toBe('Hello');
   });
 
   it('should handle very long strings and strings with only symbols', () => {
@@ -120,10 +125,18 @@ describe('slugify', () => {
   });
 
   it('should handle option combinations and edge cases', () => {
-    expect(slugify('The quick brown fox', { lower: false, separator: '_', removeStopWords: true })).toBe('quick_brown_fox');
-    expect(slugify('Äpfel & Öl!', { lower: false, separator: '_', locale: true })).toBe('Aepfel_Oel');
-    expect(slugify('foo bar baz', { customReplacements: { foo: 'zap' }, strict: true, separator: '_' })).toBe('zap_bar_baz');
-    expect(slugify('FOO foo', { lower: false, customReplacements: { FOO: 'BAR', foo: 'baz' } })).toBe('BAR-baz');
+    expect(
+      slugify('The quick brown fox', { lowercase: false, separator: '_', removeStopWords: true })
+    ).toBe('quick_brown_fox');
+    expect(slugify('Äpfel & Öl!', { lowercase: false, separator: '_', locale: true })).toBe(
+      'Aepfel_Oel'
+    );
+    expect(
+      slugify('foo bar baz', { customReplacements: { foo: 'zap' }, strict: true, separator: '_' })
+    ).toBe('zap_bar_baz');
+    expect(
+      slugify('FOO foo', { lowercase: false, customReplacements: { FOO: 'BAR', foo: 'baz' } })
+    ).toBe('BAR-baz');
   });
 
   it('should handle multi-character separators with strict mode and maxLength', () => {

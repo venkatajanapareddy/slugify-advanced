@@ -14,11 +14,11 @@ export interface SlugifyOptions {
    * Whether to convert the result to lowercase.
    * @default true
    */
-  lower?: boolean;
+  lowercase?: boolean;
   /**
    * Custom character replacements to apply before any other processing.
    * Keys are characters/strings to replace, values are their replacements.
-   * Applied case-insensitively if `lower` is true. Longest keys replaced first.
+   * Applied case-insensitively if `lowercase` is true. Longest keys replaced first.
    * @default {}
    */
   customReplacements?: Record<string, string> | Map<string, string>;
@@ -70,7 +70,7 @@ export function slugify(input: string, options: SlugifyOptions = {}): string {
 
   const {
     separator = '-',
-    lower = true,
+    lowercase = true,
     customReplacements = {},
     locale = true,
     strict = false,
@@ -89,9 +89,7 @@ export function slugify(input: string, options: SlugifyOptions = {}): string {
   for (const [find, replace] of replacementsArr) {
     const flags = 'g';
     const pattern = escapeRegExp(find);
-    result = result.replace(new RegExp(pattern, flags), (match) =>
-      preserveCase(match, replace)
-    );
+    result = result.replace(new RegExp(pattern, flags), (match) => preserveCase(match, replace));
   }
 
   // d. Locale mappings (use LOCALE_MAPPINGS as is)
@@ -99,9 +97,7 @@ export function slugify(input: string, options: SlugifyOptions = {}): string {
     const localeEntries = Object.entries(LOCALE_MAPPINGS).sort((a, b) => b[0].length - a[0].length);
     for (const [find, replace] of localeEntries) {
       const pattern = escapeRegExp(find);
-      result = result.replace(new RegExp(pattern, 'g'), (match) =>
-        preserveCase(match, replace)
-      );
+      result = result.replace(new RegExp(pattern, 'g'), (match) => preserveCase(match, replace));
     }
   }
   // Always handle ß -> ss even if locale: false
@@ -112,7 +108,7 @@ export function slugify(input: string, options: SlugifyOptions = {}): string {
   result = result.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   // c. Lowercase (after normalization, before stop word removal)
-  if (lower) {
+  if (lowercase) {
     result = result.toLowerCase();
   }
 
@@ -124,10 +120,7 @@ export function slugify(input: string, options: SlugifyOptions = {}): string {
     stopWords = removeStopWords;
   }
   if (stopWords.length > 0) {
-    const stopPattern = new RegExp(
-      `\\b(${stopWords.map(escapeRegExp).join('|')})\\b`,
-      'gi'
-    );
+    const stopPattern = new RegExp(`\\b(${stopWords.map(escapeRegExp).join('|')})\\b`, 'gi');
     result = result.replace(stopPattern, ' ');
     result = result.replace(/\s+/g, ' ');
     result = result.trim();
@@ -191,10 +184,16 @@ export function slugify(input: string, options: SlugifyOptions = {}): string {
   // j. Trim leading/trailing separators
   if (separator) {
     if (isMultiCharSep) {
-      const trimPattern = new RegExp(`^(?:${escapeRegExp(separator)})+|(?:${escapeRegExp(separator)})+$`, 'g');
+      const trimPattern = new RegExp(
+        `^(?:${escapeRegExp(separator)})+|(?:${escapeRegExp(separator)})+$`,
+        'g'
+      );
       result = result.replace(trimPattern, '');
     } else {
-      const trimPattern = new RegExp(`^${escapeRegExp(separator)}+|${escapeRegExp(separator)}+$`, 'g');
+      const trimPattern = new RegExp(
+        `^${escapeRegExp(separator)}+|${escapeRegExp(separator)}+$`,
+        'g'
+      );
       result = result.replace(trimPattern, '');
     }
   }

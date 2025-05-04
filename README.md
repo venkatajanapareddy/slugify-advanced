@@ -40,7 +40,7 @@ Converts a string into a URL-friendly slug with advanced customization options.
 | Option              | Type                        | Default   | Description |
 |---------------------|-----------------------------|-----------|-------------|
 | `separator`         | `string`                    | `'-'`     | Character used to join words and replace invalid character sequences. |
-| `lower`             | `boolean`                   | `true`    | Whether to convert the result to lowercase. |
+| `lowercase`         | `boolean`                   | `true`    | Whether to convert the result to lowercase. |
 | `customReplacements`| `Record<string, string>` or `Map<string, string>` | `{}` | Custom character replacements to apply before any other processing. |
 | `locale`            | `boolean`                   | `true`    | Enable built-in locale transliterations for common European characters. |
 | `strict`            | `boolean`                   | `false`   | If true, only allows alphanumeric and separator. If false, also allows underscores. |
@@ -59,7 +59,7 @@ slugify('foo_bar-baz!', { strict: true });
 slugify('foo bar baz', { separator: '', customReplacements: { foo: 'zap' } });
 // 'zapbarbaz'
 
-slugify('Äpfel & Öl!', { lower: false, separator: '_', locale: true });
+slugify('Äpfel & Öl!', { lowercase: false, separator: '_', locale: true });
 // 'Aepfel_Oel'
 
 slugify('foo bar baz', { maxLength: 7 });
@@ -82,7 +82,7 @@ See `src/constants.ts` for the full mapping.
 
 1. **Input check**: Throws if not a string. Trims input. Returns `''` if empty.
 2. **Custom replacements**: Applies user-defined replacements (longest keys first).
-3. **Case conversion**: Applies `lower` if enabled.
+3. **Case conversion**: Applies `lowercase` if enabled.
 4. **Locale transliteration**: Applies built-in mappings if `locale: true`.
 5. **Unicode normalization**: Removes diacritics.
 6. **Stop word removal**: Removes stop words if enabled.

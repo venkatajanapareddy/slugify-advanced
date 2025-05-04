@@ -1,6 +1,6 @@
 {
   "name": "slugify-advanced",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Advanced, SEO-friendly, locale-aware string slugification for URLs. TypeScript, zero runtime deps.",
   "keywords": [
     "slugify",
